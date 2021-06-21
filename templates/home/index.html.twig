@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Symforion - Home !{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-5">
+
+            {% if is_granted('ROLE_STUDENT')  %}
+                <div class="col-md-3">
+                    <div class="card shadow">
+                        <div class="card-body ">
+                            <h4 class="card-title">Mes notes</h4>
+                            <p class="card-text">
+                                Accedez à l'ensemble de vos notes au cours de votre année.
+                            </p>
+                            <a href="/display/marks" class="btn btn-outline-salmon rounded-pill">Voir mes notes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow">
+                        <div class="card-body ">
+                            <h4 class="card-title">Mes stats</h4>
+                            <p class="card-text">
+                                Accedez à un ensemble de statistique et suivez l'evolution de vos notes au cours de l'année
+                            </p>
+                            <a href="#" class="btn btn-outline-salmon rounded-pill">Voir les statistiques</a>
+                        </div>
+                    </div>
+                </div>
+
+            {% elseif is_granted("ROLE_TEACHER") %}
+
+                <div class="col-md-3">
+                    <div class="card shadow">
+                        <div class="card-body ">
+                            <h4 class="card-title">Ajouter une note</h4>
+                            <p class="card-text">
+                                Ajouter une nouvelle note à un ou plusieurs èleves dans la matière de votre choix
+                            </p>
+                            <a href="manage/marks" class="btn btn-outline-salmon rounded-pill">Ajouter une note</a>
+                        </div>
+                    </div>
+                </div>
+
+            {% elseif is_granted('ROLE_ADMIN') %}
+
+                <div class="col-md-3">
+                    <div class="card shadow">
+                        <i class="card-img-top bi bi-ul-list" alt="..."></i>
+                        <div class="card-body ">
+                            <h4 class="card-title">Gestion des utilisateurs</h4>
+                            <p class="card-text">
+                                Accedez à la gestion des utilisateurs, créer ou modifier un Eleve ou un Professeur
+                            </p>
+                            <a href="/manage/users" class="btn btn-outline-salmon rounded-pill">Gerer les utilisateurs</a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow">
+                        <div class="card-body ">
+                            <h4 class="card-title">Gestion des promos</h4>
+                            <p class="card-text">
+                                Accedez à la gestion des promos. Vous pourrez creer ou supprimer une promotion.
+                            </p>
+                            <a href="/manage/promo" class="btn btn-outline-salmon rounded-pill">Gerer les promos</a>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}

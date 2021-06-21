@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Symforion - Connexion !{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mx-auto mt-5 ">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 text-center mt-4">
+                                <h5>Connexion</h5>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 mx-auto mt-4">
+                                <hr>
+                            </div>
+                        </div>
+
+                        <form method="post">
+                            {% if error %}
+                                <div class="alert alert-danger mt-4">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+
+                            {% if app.user %}
+                                <div class="mb-3">
+                                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                </div>
+                            {% endif %}
+                            <div class="row">
+                                <div class="col-12 mt-4">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" value="{{ last_username }}" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                                        <label for="inputEmail">Adresse mail : </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 mt-4">
+                                    <div class="form-floating">
+                                        <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password" autocomplete="current-password" required>
+                                        <label for="inputPassword">Mot de passe : </label>
+                                    </div>
+                                </div>
+                                <div class="col mt-2">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" id="rememberMe" name="_remember_me">
+                                        <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                            <div class="row">
+                                <div class="col-6 mx-auto mt-4">
+                                    <hr>
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="d-grid col-8 mt-4 mb-4 mx-auto">
+                                    <button type="submit" class="btn btn-outline-salmon rounded-pill">Se connecter</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

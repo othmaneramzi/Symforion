@@ -1,0 +1,41 @@
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+    </style>
+{% block body %}
+    <center><h1>Bulletin de notes</h1></center>
+    <h2>Nom et prenom :  {{ app.user.lastname }} {{ app.user.firstname }}</h2>
+<center><table id="markTable"  style="width:60%">
+    <thead>
+    <tr>
+        <th>note</th>
+        <th>coef</th>
+        <th>type</th>
+        <th>matière</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set notes = 0%}
+    {% set coefs = 0 %}
+    {% set moyenne = 0 %}
+    {% for mark in marks %}
+        <tr>
+            <td>{{ mark.mark }}</td>
+            <td>{{ mark.coef }}</td>
+            <td>{{ mark.type }}</td>
+            <td>{{ mark.subject.name }}</td>
+            {% set notes = notes + (mark.mark * mark.coef) %}
+            {% set coefs = coefs + mark.coef %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table></center>
+    {% set moyenne = notes/coefs  %}
+    <table><tr>
+
+            <td>moyenne</td>
+
+            <td>{{ moyenne| number_format(2) }}</td></table>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+.btn-outline-salmon {
+    color: #FFB1A3;
+    background-color: transparent;
+    background-image: none;
+    border-color: #FFB1A3
+}
+
+.btn-outline-salmon:hover {
+    color: #FFFFFF;
+    background-color: #ffb4a7;
+    border-color: #FFB1A3
+}
+
+.btn-outline-salmon:focus,
+.btn-outline-salmon.focus {
+    box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
+}
+
+.btn-outline-salmon.disabled,
+.btn-outline-salmon:disabled {
+    color: #FFB1A3;
+    background-color: transparent
+}
+
+.btn-outline-salmon:not(:disabled):not(.disabled):active,
+.btn-outline-salmon:not(:disabled):not(.disabled).active,
+.show>.btn-outline-salmon.dropdown-toggle {
+    color: #212529;
+    background-color: #ffb4a7;
+    border-color: #FFB1A3
+}
+
+.btn-outline-salmon:not(:disabled):not(.disabled):active:focus,
+.btn-outline-salmon:not(:disabled):not(.disabled).active:focus,
+.show>.btn-outline-salmon.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
+}
