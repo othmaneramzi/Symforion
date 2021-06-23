@@ -28,8 +28,8 @@ $(document).keypress(function(event){
  * Evenement onChange sur le select de séléction de promo
  */
 selectPromo.on('change', function() {
-    let idPromo = $(selectPromo, "option:selected" ).val();
-    fetchStudentByPromo(idPromo);
+   let idPromo = $(selectPromo, "option:selected" ).val();
+   fetchStudentByPromo(idPromo);
 });
 
 /**

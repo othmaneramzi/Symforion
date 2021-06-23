@@ -2,48 +2,66 @@
 
 {% block title %}Hello DisplayMarksController!{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset("css/markDisplay.css") }}">
 {% endblock %}
 
 {% block javascripts %}
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
 {% endblock %}
 
 {% block body %}
-<div class="tableContainer">
-    <div class="example-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row mt-2 ps-2">
+                            <h3>Mes dernières notes</h3>
+                        </div>
+                        <div class="row mt-2 p-3">
+                            <div class="col-12">
+                                <table id="markTable"  style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>note</th>
+                                        <th>coef</th>
+                                        <th>type</th>
+                                        <th>description</th>
+                                        <th>matière</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for mark in marks %}
+                                        <tr>
+                                            <td>{{ mark.mark }}</td>
+                                            <td>{{ mark.coef }}</td>
+                                            <td>{{ mark.type }}</td>
+                                            <td>{{ mark.description }}</td>
+                                            <td>{{ mark.subject.name }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
 
-        <table id="markTable"  style="width:100%">
-            <thead>
-                <tr>
-                    <th>note</th>
-                    <th>coef</th>
-                    <th>type</th>
-                    <th>description</th>
-                    <th>matière</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for mark in marks %}
-                <tr>
-                    <td>{{ mark.mark }}</td>
-                    <td>{{ mark.coef }}</td>
-                    <td>{{ mark.type }}</td>
-                    <td>{{ mark.description }}</td>
-                    <td>{{ mark.subject.name }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                            </div>
+                        </div>
+                        <center><a class="btn btn-primary" href="{{ path('display_bulletin') }}" role="button">Voir Bulletin</a></center>
 
-    </div>
-</div>
-    <a href="{{ path('display_bulletin') }}">Voir Bulletin</a>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </div>
+
+
+
+
     <script>
         $(document).ready( function () {
             $('#markTable').DataTable({
-                "dom" : 't'
             });
         } );
     </script>

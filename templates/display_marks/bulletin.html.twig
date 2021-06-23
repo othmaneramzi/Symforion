@@ -1,11 +1,26 @@
+<meta charset="UTF-8" />
 <style>
     table, th, td {
         border: 1px solid black;
+        margin-top: 100px;
     }
+    h3 {
+        margin-top: 100px;
+    }
+    h1 {
+        margin-right: 350px;
+    }
+
+    img {
+        position: absolute;
+        top: 0px;
+        right: 0px;
     </style>
 {% block body %}
+    
     <center><h1>Bulletin de notes</h1></center>
-    <h2>Nom et prenom :  {{ app.user.lastname }} {{ app.user.firstname }}</h2>
+    <img src="https://ig2i.centralelille.fr/wp-content/uploads/sites/6/Logos/Centrale_Lille_IG2I.png">
+    <h3>Nom et prénom :  {{ app.user.lastname }} {{ app.user.firstname }}</h3>
 <center><table id="markTable"  style="width:60%">
     <thead>
     <tr>
@@ -19,15 +34,22 @@
     {% set notes = 0%}
     {% set coefs = 0 %}
     {% set moyenne = 0 %}
-    {% for mark in marks %}
+    {% set i = 0 %}
+    {% for mark in marks  %}
+
         <tr>
             <td>{{ mark.mark }}</td>
             <td>{{ mark.coef }}</td>
             <td>{{ mark.type }}</td>
+
+
             <td>{{ mark.subject.name }}</td>
+
+
             {% set notes = notes + (mark.mark * mark.coef) %}
             {% set coefs = coefs + mark.coef %}
         </tr>
+
     {% endfor %}
     </tbody>
 </table></center>

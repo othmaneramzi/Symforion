@@ -15,6 +15,7 @@ use App\Repository\MarkRepository;
 use Knp\Snappy\Pdf;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
+
 class DisplayMarksController extends AbstractController
 {
     private MarkRepository $markRepository;
@@ -45,19 +46,17 @@ class DisplayMarksController extends AbstractController
      */
     public function bulletin(Pdf $knpSnappyPdf): Response
     {
-       ;
         $student = $this->getUser();
 
       $html= $this->renderView('display_marks/bulletin.html.twig', [
             'student' => $student,
             'controller_name' => 'DisplayMarksController',
-            'marks' => $this->markRepository->findBy(array('student' => $student))
+            'marks' => $this->markRepository->findBy(array('student' => $student),array('subject'=>'DESC'))
         ]);
-
 
         return new PdfResponse(
             $knpSnappyPdf->getOutputFromHtml($html),
-            'file.pdf'
+            'bulletin.pdf'
         );
 
 
